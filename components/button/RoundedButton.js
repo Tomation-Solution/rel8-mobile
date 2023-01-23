@@ -9,7 +9,7 @@ const RoundedButton = (props) => {
         tw`py-2.5 my-2 rounded-full`,
         {
           backgroundColor:
-            props.bgColor === undefined ? "#365C2A" : props.bgColor,
+            props.bgColor === undefined ? "#581c87" : props.bgColor,
           borderWidth: props.borderWidth,
           borderColor: props.borderColor,
         },

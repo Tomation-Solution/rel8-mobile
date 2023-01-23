@@ -50,7 +50,6 @@ const GeneralSingle = ({navigation,route}) => {
     }
 
     const sendMessage = () => {
-      console.log(message)
       try{
        ws.send(JSON.stringify(message))
         setMessage({...message, message: ''})

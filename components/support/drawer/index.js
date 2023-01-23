@@ -47,29 +47,28 @@ export default function CustomDrawerList({navigation}) {
     }
     const drawerData=[
         // {id:1, label:'Home', to:'dashboard', icon:<Ionicon name='md-home' size={22} color={'grey'}/>},
-        {id:2, label:'Events', to:'events', icon:(<MaterialIcon name='event-available' style={tw`text-center `} color={'grey'} size={22}/>)},
-        {id:3, label:'News', to:'news', icon:<MaterialCom name="message-alert" size={22} color={'grey'}
-        />}
+        {id:2, label:'Registered Organization', to:'registeredorganization', icon:(<MaterialIcon name='group' style={tw`text-center `} color={'grey'} size={22}/>)},
+        // {id:3, label:'News', to:'news', icon:<MaterialCom name="message-alert" size={22} color={'grey'}
+        // />}
     // {id:9, label:'Logout', to:'subscribe'},
     ]
 
     const drawerData2 =[
-        {id:5, label:'Gallery', to:'gallery', icon:<FontAwesome name="photo" size={22} color={'grey'}
+        {id:5, label:'Settings', to:'gallery', icon:<FontAwesome name="cog" size={22} color={'grey'}
         /> },
-        {id:6, label:'Election Portal', to:'election', icon:<MaterialIcon name="how-to-vote" size={22} color={'grey'}
-        />},
+        // {id:6, label:'Election Portal', to:'election', icon:<MaterialIcon name="how-to-vote" size={22} color={'grey'}
+        // />},
         // {id:7, label:'Subscribe', to:'subscribe', icon:<MaterialIcon name="subscriptions" size={22} color={'grey'}
         // />},
-        {id:8, label:'Support', to:'support', icon:<MaterialIcon name="headset-mic" size={22} color={'grey'}
-     /> },
-     {id:7, label:'About', to:'about', icon:<MaterialIcon name="info" size={22} color={'grey'}
-     /> },
+    //     {id:8, label:'Support', to:'support', icon:<MaterialIcon name="headset-mic" size={22} color={'grey'}
+    //  /> },
+    //  {id:7, label:'About', to:'about', icon:<MaterialIcon name="info" size={22} color={'grey'}
+    //  /> },
     ]
 
     const options =[
-        {id:9, label:'Exco Directory', to:'exco'},
-        {id:10, label:'Publications', to:'publication'},
-        {id:11, label:'Minutes', to:'minutes'},
+        {id:9, label:'Bulk Payment', to:'bulk'},
+        {id:10, label:'Individual Payment', to:'individual'},
        
     ]
 
@@ -134,14 +133,14 @@ export default function CustomDrawerList({navigation}) {
                 to={()=>navigation.navigate('Home',{type:'committee'})}
                 />}
             /> 
-            <View style={tw`border-b  flex-row justify-around border-gray-300 mx-4 py-1.5 mb-6 w-10/12`}>
+            <View style={tw`border-b h-20 w-40 flex-row justify-around border-gray-300 mx-4 py-1.5 mb-6 w-10/12`}>
                   
-                  <Image style={tw`h-20 w-40 mx-auto`} source={require('../../../images/Logo/ANNILogo.png')}/>
+                  <Image style={tw`mx-auto`} resizeMode="cover" source={require('../../../images/Logo/r8Logo.png')}/>
                 
             </View>
             <ScrollView>
 
-            <Pressable onPress={()=>handleSwitch(1)} style={tw` flex-row mx-5 justify-between`}>
+            {/* <Pressable onPress={()=>handleSwitch(1)} style={tw` flex-row mx-5 justify-between`}>
                 <View style={tw`flex-row`}>
                     <MaterialIcon name='groups' style={tw`mr-8 my-auto text-gray-500`} size={22} />
                     <Text style={tw`my-auto`}>Members Zone</Text>
@@ -164,7 +163,7 @@ export default function CustomDrawerList({navigation}) {
                 </View>
                 <Switch value={directory.comm} style={tw`my-auto`} />
                
-            </Pressable>
+            </Pressable> */}
              { showComiittee ? committeeList.map(e=>
             <Pressable key={e.id} onPress={()=>handleCommitteeSub(e.label)} style={tw`w-full ml-12 my-1`}>
                 <Text style={tw`text-gray-600 ml-7`}>{e.label}</Text>
@@ -186,8 +185,8 @@ export default function CustomDrawerList({navigation}) {
             
             
             <Pressable onPress={()=>setshowDropdown(!showDropdown)} style={tw`my-4 flex-row mx-5`}>
-                <Ionicon name='ios-file-tray-full' style={tw`mr-8 my-auto text-gray-500`} size={22} />
-                <Text style={tw`text-gray-500`}>Resources</Text>
+                <Ionicon name='md-play' style={tw`mr-8 my-auto text-gray-500`} size={22} />
+                <Text style={tw`text-gray-500`}>Subscriptions</Text>
                 <Ionicon name={showDropdown?'md-caret-up-outline':'md-caret-down-outline'} style={tw` my-auto px-2 text-gray-400`}/>
             </Pressable>
             { showDropdown ? options.map(e=>

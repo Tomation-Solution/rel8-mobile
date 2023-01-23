@@ -38,7 +38,7 @@ import AppWelcomeScreen from './pages/WelcomeScreen';
 // import DrawerContent from './components/drawer/drawerContent';
 import { createDrawerNavigator , DrawerItem,DrawerContentScrollView} from '@react-navigation/drawer';
 import Logout from './components/Modal/Logout';
-import Subscribe from './pages/subscription';
+import Subscribe from './pages/subscription/IndividualPayment';
 import Support from './pages/support';
 import Elections from './pages/election';
 import ExpandableViewSeparate from './components/support/ExpadableView';
@@ -52,8 +52,11 @@ import Notifications from './pages/Notification';
 import Profile from './pages/Profile/profile';
 import EditProfile from './pages/Profile/EditProfile';
 import SplashScreen from './pages/splashScreen';
-import Chapters from './pages/onboarding/Chapters';
+// import Chapters from './pages/onboarding/Chapters';
 import About from './pages/about'
+import RegisteredOrganization from './pages/subscription/RegisteredOrganization';
+import Individual from './pages/subscription/IndividualPayment';
+import Bulk from './pages/subscription/Bulk';
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator();
@@ -82,32 +85,32 @@ const TabScreen =()=>{
           ),
         }}/>
 
-        <Tab.Screen name='chat' 
+        {/* <Tab.Screen name='chat' 
           component={Chat} 
           options={{
-          tabBarLabel: 'Chat',
+          tabBarLabel: 'Subcription',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcon name="chat-bubble" size={23} color={color}  />
           ),
-        }}/>
+        }}/> */}
         
-        <Tab.Screen name='account' 
-          component={MyAccount} 
+        <Tab.Screen name='registeredorganization' 
+          component={RegisteredOrganization} 
           options={{
-          tabBarLabel: 'My Account',
+          tabBarLabel: 'Registered Organization',
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcon name="account-balance-wallet" size={23} color={color}  />
+            <MaterialIcon name="group" size={23} color={color}  />
           ),
         }}/>
 
-        <Tab.Screen name='members' 
+        {/* <Tab.Screen name='members' 
           component={Members} 
           options={{
           tabBarLabel: 'Members',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcon name="groups" size={25} color={color}  />
           ),
-        }}/>
+        }}/> */}
         
 
     </Tab.Navigator>)
@@ -148,8 +151,11 @@ export default function App() {
         <Stack.Screen name='view-member' component={ViewMember}/>
         <Stack.Screen name='profile' component={Profile}/>
         <Stack.Screen name='editProfile' component={EditProfile}/>
-        <Stack.Screen name='verification' component={Chapters}/>
+        {/* <Stack.Screen name='verification' component={Chapters}/> */}
         <Stack.Screen name='about' component={About}/>
+        <Stack.Screen name='registeredorganization' component={RegisteredOrganization} />
+        <Stack.Screen name='individual' component={Individual} />
+        <Stack.Screen name='bulk' component={Bulk}/>
 
         <Stack.Screen name='dashboard'>
         {()=>(

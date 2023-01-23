@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "AANI",
-    "slug": "AANI",
-    "version": "1.0.0",
+    "name": "Rel8",
+    "slug": "rel8",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon8.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,18 +17,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tomation.REL8"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.tomation.AANI"
+      "package": "com.tomation.REL8",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "",
+    "extra": {
+      "eas": {
+        "projectId": "10dfa44f-bbce-4957-8042-8d3a6f68b7dd"
+      }
+    }
   }
 }

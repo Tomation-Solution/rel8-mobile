@@ -20,6 +20,9 @@ import { GetGallery, GetNews, GetPublications, LikeDisLikeNews, GetProfile, Mult
 import localStorage from "react-native-sync-localstorage";
 import { RequestCall } from '../components/Modal/RequestCall'
 import api from '../connection/api'
+import BalanceCard from '../components/account/BalanceCard'
+import RoundedButton from '../components/button/RoundedButton'
+import { MemberCard } from '../components/members/MemberCard'
 
 const Home = ({navigation, route}) => {
 
@@ -45,6 +48,20 @@ const Home = ({navigation, route}) => {
     setOpen(false)
     alert(res)
   }
+
+  const data = [
+    {name: 'SPNS', type: 'Club', users: 2000},
+    {name: 'Savy Schools', type: 'Alumni', users: 800},
+    {name: 'Lagos State University', type: 'Professional Body', users: 20000},
+    {name: 'Savy School', type: 'Alumni', users: 2000},
+    {name: 'Lagos State University', type: 'Club', users: 800},
+    {name: 'Savy School', type: 'Professional Body   ', users: 20000},
+    {name: 'Lagos State University', type: 'Club', users: 700},
+    {name: 'Savy School', type: 'Professional Body   ', users: 20000},
+    {name: 'Savy School', type: 'Professional Body   ', users: 20000},
+    {name: 'Lagos State University', type: 'Club', users: 700},
+    {name: 'Savy School', type: 'Professional Body   ', users: 20000}
+  ]
 
   const mCallback = (res) => {
     console.log('multiple',res)
@@ -132,28 +149,26 @@ const Home = ({navigation, route}) => {
     return(
       <View>
         {props.show ? <View>
-          <Text style={tw`text-base font-bold my-2 mt-6`}> Feeds </Text>
-          <View style={tw`flex-row justify-between px-5`}>
-            <Pressable onPress={()=>navigation.navigate('events')}>
-              <MaterialIcon name='event-available' style={tw`text-center pb-2`} color='#C4C4C4' size={35}/>
-              <Text style={tw`text-xs`}>Events</Text>
-            </Pressable>
-            <Pressable onPress={()=>navigation.navigate('gallery')}>
-              <FontAwesome name='photo' style={tw`text-center pb-2`} color='#C4C4C4' size={30} />
-              <Text style={tw`text-xs`}>Gallery</Text>
-            </Pressable>
-
-            <Pressable onPress={()=>navigation.navigate('publication')}>
-              <Ionicon name='book' style={tw`text-center pb-2`} color='#C4C4C4' size={30}/>
-              <Text style={tw`text-xs`}>Publications</Text>
-            </Pressable>
+          <Text style={tw`text-base font-bold my-2 mt-6`}> Registered Organization </Text>
+          <View style={tw`flex-row justify-between p-3 rounded bg-purple-300`}>
+            <Text style={tw`text-xs w-1/4 text-center`}>Organization Name</Text>
+            <Text style={tw`text-xs w-1/4 text-center`}>Organization Type</Text>
+            <Text style={tw`text-xs w-1/4 text-center`}>Number of Users</Text>
+            <Text style={tw`text-xs w-1/4 text-center`}>Action</Text>
+          </View>
+          <View>
+            {data.map(item =>(
+              <MemberCard
+                lenght={4}
+                name={item.name}
+                dept={item.type}
+                year={item.users}
+                button1={<Ionicon style={tw`my-auto px-1 text-base text-red-800`}  name='ios-pencil-sharp' />}
+                button2={<Ionicon style={tw`my-auto px-1 text-base text-red-800`}  name='trash' />}
+              />
+            ))}
           </View>
           </View> : null}
-
-          <View style={tw`flex-row my-3 bg-green-800 mt-7 justify-between p-2 rounded-lg`}>
-            <Text style={tw`font-bold text-white`}>{props.textTitle}</Text>
-            <Text style={tw`text-xs text-white`}>See All ({props.count})</Text>
-          </View>
           <View style={tw` flex-row mt-0 `}></View>
       </View>
     )
@@ -163,8 +178,7 @@ const Home = ({navigation, route}) => {
   return (
     <SafeAreaView style={tw`mx-3`}>
       <RequestCall open={open} />
-      <StatusBar backgroundColor={'#365C2A'} showHideTransition='slide'/>
-      {/* <Text>home</Text> */}
+      <StatusBar backgroundColor={'#581c87'} showHideTransition='slide'/>
       <TobBar
         body={
           <View style={tw`flex-row justify-between `}>
@@ -204,18 +218,26 @@ const Home = ({navigation, route}) => {
               <View>
                 {!route.params || route.params.query.type != 'is_exco' ?
                 <>
-                    <Text style={tw`text-base font-bold mb-2`}> Latest Update </Text>
-                  <PanGestureHandler onGestureEvent={gestureHandler}>
-                    <Animated.View style={[tw`flex-row`,scrollHorizontal]}>
-                      {gallery.map((image,index) => <Image resizeMode='stretch' resizeMethod='auto' key={index} style={tw`h-56 mx-3 w-11/12 rounded-lg`} source={{uri: image.photo_file}}/>)}
-                    </Animated.View>
-                  </PanGestureHandler>
+                    <Text style={tw`text-base font-bold mb-2`}> Organization Directory </Text>
+                    <View style={tw`flex-row justify-between flex-wrap p-2 bg-gray-200 rounded`}>
+                      <BalanceCard 
+                        isAmount={false}
+                        amount={50}
+                        description="Registered organization"
+                        bg="bg-blue-200 w-1/2"
+                      />
+                       <BalanceCard 
+                        isAmount={false}
+                        amount={'20,000'}
+                        description="Total Subscribers"
+                        bg="bg-purple-200 w-1/2"
+                      />
+                       <RoundedButton pressed={()=> navigation.navigate('registeredorganization')} style={{width: '50%',marginLeft: 'auto', marginRight: 'auto'}} text="Create Organization" />
+                    </View>
                   </>
                  : 
                  null
                  }
-
-                 {/* feeds: quick links */}
                 <UpperComponent textTitle='News' show={true} count={news !== null ? news.length : 0}/>
               </View>
             }
@@ -234,48 +256,6 @@ const Home = ({navigation, route}) => {
                         to='viewNews'
                   />
                   )}/>
-
-        <FlatList
-            data={publications}
-            // style={{borderStyle: 'solid', borderWidth: 1,}}
-            keyExtractor={ (item, index) => item.id }
-            // contentContainerStyle={styles.container}
-            numColumns={2}
-            // scrollEnabled={false}
-            showsVerticalScrollIndicator={false}
-            // contentOffset={1}
-            ListFooterComponent={<View style={tw`h-12`}></View>}
-            ListHeaderComponent={
-              <View>
-                {/* {!route.params || route.params.type != 'committee' ?
-                <View>
-                  <Text style={tw`text-base font-bold mb-2`}> Latest Update </Text>
-                  <Image style={tw`h-32 w-full rounded-lg`} source={require('../images/onboarding/network.png')}/>
-                </View> 
-                 : 
-                 <TodoList data={todoData}/>} */}
-
-                 {/* feeds: quick links */}
-                <UpperComponent textTitle='Publications' show={false} count={publications.length < 1 !== null ? publications.length : 0}/>
-              </View>
-            }
-            renderItem={
-                ({item}) => (
-                  
-                  <NewsCard 
-                        image={item.image}
-                        head={item.name}
-                        body={item.body}
-                        item={item}
-                        navigation = {navigation}
-                        isLiked={item.likes}
-                        pressLike={()=>likeNews(item)}
-                        pressDisLike={()=>alert('like')}
-                        to='viewPublication'
-                  />
-                  )}/>
-        {/* </View> */}
-      {/* // </View> */}
       
       </ScrollView>
     </SafeAreaView>

@@ -68,7 +68,7 @@ const Login = ({navigation, route}) => {
   return (
     <SafeAreaView >
       {/* <ModalTemplate body={<OwingWidget/>} /> */}
-      <Image style={tw`mx-auto my-8`} source={require('../images/Logo/ANNILogo.png')}/>
+      <Image style={tw`mx-auto my-12`} source={require('../images/Logo/r8Logo.png')}/>
       <View style={tw`mx-10`}>
          <Text style={tw`text-base font-bold`}>{route.params ? route.params.state  + ' Chapter ':''}Login</Text>
           <Text>Enter login details.</Text>
@@ -100,7 +100,7 @@ const Login = ({navigation, route}) => {
             {loading ? (
               <ActivityIndicator color="purple" size="large" />
             ) : (
-              <RoundedButton text="Login" pressed={() => handleLogin()} />
+              <RoundedButton text="Login" pressed={() => callback()} />
             )}
           </View>
           <TouchableOpacity onPress={()=>navigation.navigate('forgotPassword')}> 

@@ -66,7 +66,7 @@ const Events = ({navigation}) => {
           </View>
         }
         />
-      <View style={tw`flex-row justify-between bg-purple-100 my-3 rounded-lg py-2 mx-4 px-2`}> 
+      <View style={tw`flex-row justify-between bg-purple-900 my-3 rounded-lg py-2 mx-4 px-2`}> 
         <Ionicon name='ios-search' size={25} style={tw`mr-2`} />
         <TextInput
           placeholder='Search by date'
